@@ -49,7 +49,7 @@
                                         <option value="スポーツ" {{$post->topic_tag == 'スポーツ' ? "selected" : ''}}>スポーツ</option>
                                         <option value="アニメ" {{$post->topic_tag == 'アニメ' ? "selected" : ''}}>アニメ</option>
                                         <option value="ゲーム" {{$post->topic_tag == 'ゲーム' ? "selected" : ''}}>ゲーム</option>
-                                        <option value="動画鑑賞" {{$post->topic_tag == '動画鑑賞' ? "selected" : ''}}>動画鑑賞</option>
+                                        <option value="動画" {{$post->topic_tag == '動画' ? "selected" : ''}}>動画</option>
                                     </select>
                                     @error('topic_tag')
                                         <span class="invalid-feedback" role="alert">

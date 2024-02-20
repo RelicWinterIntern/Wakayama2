@@ -14,6 +14,9 @@
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
             </a>
+            <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('全投稿') }}
+            </a>
             <a href="{{ route('freeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('フリー') }}
             </a>
@@ -27,7 +30,7 @@
                 {{ __('ゲーム') }}
             </a>
             <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
-                {{ __('動画鑑賞') }}
+                {{ __('動画') }}
             </a>
         </div>
 

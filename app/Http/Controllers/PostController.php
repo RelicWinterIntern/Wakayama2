@@ -69,7 +69,7 @@ class PostController extends Controller
 
     public function moviePosts()
     {
-        $posts = Post::where('topic_tag', '動画鑑賞')->orderBy('updated_at', 'desc')->get();
+        $posts = Post::where('topic_tag', '動画')->orderBy('updated_at', 'desc')->get();
         return view('movie-posts', compact('posts'));
     }
 

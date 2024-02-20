@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('自由なトピックの投稿一覧') }}
+            {{ __('自由な投稿一覧') }}
         </h2>
     </x-slot>
 
@@ -12,6 +12,9 @@
             </a>
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
+            </a>
+            <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('全投稿') }}
             </a>
             <a href="{{ route('freeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('フリー') }}
@@ -26,7 +29,7 @@
                 {{ __('ゲーム') }}
             </a>
             <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
-                {{ __('動画鑑賞') }}
+                {{ __('動画') }}
             </a>
         </div>
 
@@ -34,8 +37,8 @@
             <div class="grid grid-cols-1 gap-4">
                 @foreach ($posts as $post)
                     <div class="bg-white shadow p-6 rounded-lg">
-                        <h4 class="text-lg font-bold">{{ $post->title }}</h4>
-                        <p class="text-gray-800">{{ $post->body }}</p>
+                        <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
+                        <p class="text-gray-1000 mt-4">{!! nl2br($post->makeLink($post->body)) !!}</p>
                         <div class="flex justify-between mt-8">
                                 <span>
                                     @if ($post->is_liked())
@@ -54,7 +57,6 @@
                                     {{ $post->user->name }} &emsp; {{ $post->updated_at }}
                                 </p>
                             </div>
-                        <p class="text-gray-800">{{ $post->updated_at }}</p>
                     </div>
                 @endforeach
             </div>
