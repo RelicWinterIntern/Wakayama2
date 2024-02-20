@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/post/{id}', [PostController::class, 'update'])->name('post.update');
     Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 
+    Route::get('/post/{id}/like', [LikeController::class, 'like'])->name('post.like');
+    Route::get('/post/{id}/unlike', [LikeController::class, 'unlike'])->name('post.unlike');
+
     Route::get('/myposts', [PostController::class, 'myPosts'])->name('myposts');
+
+    Route::get('/freeposts', [PostController::class, 'freePosts'])->name('freeposts');
+    Route::get('/sportsposts', [PostController::class, 'sportsPosts'])->name('sportsposts');
+    Route::get('/animeposts', [PostController::class, 'animePosts'])->name('animeposts');
+    Route::get('/gameposts', [PostController::class, 'gamePosts'])->name('gameposts');
+    Route::get('/movieposts', [PostController::class, 'moviePosts'])->name('movieposts');
 });
 
 require __DIR__.'/auth.php';
