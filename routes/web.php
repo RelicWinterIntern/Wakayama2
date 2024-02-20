@@ -41,6 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/post/{id}/unlike', [LikeController::class, 'unlike'])->name('post.unlike');
 
     Route::get('/myposts', [PostController::class, 'myPosts'])->name('myposts');
+
+    Route::get('/freeposts', [PostController::class, 'freePosts'])->name('freeposts');
+    Route::get('/sportsposts', [PostController::class, 'sportsPosts'])->name('sportsposts');
+    Route::get('/animeposts', [PostController::class, 'animePosts'])->name('animeposts');
+    Route::get('/gameposts', [PostController::class, 'gamePosts'])->name('gameposts');
+    Route::get('/movieposts', [PostController::class, 'moviePosts'])->name('movieposts');
 });
 
 require __DIR__.'/auth.php';

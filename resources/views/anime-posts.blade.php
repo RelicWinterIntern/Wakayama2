@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('自分の投稿一覧') }}
+            {{ __('アニメに関する投稿一覧') }}
         </h2>
     </x-slot>
 
@@ -36,21 +36,25 @@
                     <div class="bg-white shadow p-6 rounded-lg">
                         <h4 class="text-lg font-bold">{{ $post->title }}</h4>
                         <p class="text-gray-800">{{ $post->body }}</p>
-                        <p class="text-gray-800">{{ $post->updated_at }}</p>
-
-                        <div class="mt-4 flex">
-                            <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-primary mr-2"
-                                role="button">
-                                {{ __('編集') }}
-                            </a>
-                            <form action="{{ route('post.destroy', ['id' => $post->id]) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">
-                                    {{ __('削除') }}
-                                </button>
-                            </form>
+                        <div class="flex justify-between mt-8">
+                            <span>
+                                @if ($post->is_liked())
+                                    <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
+                                        いいね済
+                                        {{ $post->likes->count() }}
+                                    </a>
+                                @else
+                                    <a href="{{ route('post.like', $post->id) }}" class="btn btn-secondary btn-sm">
+                                        いいね
+                                        <span class="badge">{{ $post->likes->count() }}</span>
+                                    </a>
+                                @endif
+                            </span>
+                            <p class="text-gray-600">
+                                {{ $post->user->name }} &emsp; {{ $post->updated_at }}
+                            </p>
                         </div>
+                    <p class="text-gray-800">{{ $post->updated_at }}</p>
                     </div>
                 @endforeach
             </div>

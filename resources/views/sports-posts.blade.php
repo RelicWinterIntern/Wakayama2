@@ -1,16 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('投稿一覧') }}
+            {{ __('スポーツに関する投稿一覧') }}
         </h2>
     </x-slot>
 
-    <div class="max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto mt-10 sm:px-6 lg:px-8">
         <div class="my-4">
-            <a href="{{ route('post.create') }}" class="inline-block py-2 px-4 btn btn-primary text-decoration-none">
-                {{ __('投稿する') }}
+            <a href="{{ route('post.create') }}" class="btn btn-primary" role="button">
+                {{ __('新しい投稿') }}
             </a>
-
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
             </a>
@@ -31,14 +30,14 @@
             </a>
         </div>
 
-        <div class="my-4">
-            @if (!empty($posts))
-                <ul>
-                    @foreach ($posts as $post)
-                        <li class="mb-6 bg-white border rounded-lg p-4">
-                            <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
-                            <p class="text-gray-1000 mt-4">{{ $post->body }}</p>
-                            <div class="flex justify-between mt-8">
+
+        @if (!empty($posts))
+            <div class="grid grid-cols-1 gap-4">
+                @foreach ($posts as $post)
+                    <div class="bg-white shadow p-6 rounded-lg">
+                        <h4 class="text-lg font-bold">{{ $post->title }}</h4>
+                        <p class="text-gray-800">{{ $post->body }}</p>
+                        <div class="flex justify-between mt-8">
                                 <span>
                                     @if ($post->is_liked())
                                         <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
@@ -56,15 +55,14 @@
                                     {{ $post->user->name }} &emsp; {{ $post->updated_at }}
                                 </p>
                             </div>
-                            
-                        </li>
-                    @endforeach
-                </ul>
-            @else
-                <div class="flex justify-center items-center h-full">
-                    <p class="text-lg text-gray-600">投稿はありません。</p>
-                </div>
-            @endif
-        </div>
+                        <p class="text-gray-800">{{ $post->updated_at }}</p>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="flex justify-center items-center h-full">
+                <p class="text-lg text-gray-600">投稿はありません。</p>
+            </div>
+        @endif
     </div>
 </x-app-layout>

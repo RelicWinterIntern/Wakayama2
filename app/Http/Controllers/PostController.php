@@ -43,6 +43,35 @@ class PostController extends Controller
         $posts = Post::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get();
         return view('my-posts', compact('posts'));
     }
+    
+    public function freePosts()
+    {
+        $posts = Post::where('topic_tag', 'フリー')->orderBy('updated_at', 'desc')->get();
+        return view('free-posts', compact('posts'));
+    }
+
+    public function sportsPosts()
+    {
+        $posts = Post::where('topic_tag', 'スポーツ')->orderBy('updated_at', 'desc')->get();
+        return view('sports-posts', compact('posts'));
+    }
+    public function animePosts()
+    {
+        $posts = Post::where('topic_tag', 'アニメ')->orderBy('updated_at', 'desc')->get();
+        return view('anime-posts', compact('posts'));
+    }
+
+    public function gamePosts()
+    {
+        $posts = Post::where('topic_tag', 'ゲーム')->orderBy('updated_at', 'desc')->get();
+        return view('game-posts', compact('posts'));
+    }
+
+    public function moviePosts()
+    {
+        $posts = Post::where('topic_tag', '動画鑑賞')->orderBy('updated_at', 'desc')->get();
+        return view('movie-posts', compact('posts'));
+    }
 
     public function edit($id)
     {
