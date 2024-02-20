@@ -14,6 +14,21 @@
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
             </a>
+            <a href="{{ route('freeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('フリー') }}
+            </a>
+            <a href="{{ route('sportsposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('スポーツ') }}
+            </a>
+            <a href="{{ route('animeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('アニメ') }}
+            </a>
+            <a href="{{ route('gameposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('ゲーム') }}
+            </a>
+            <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('動画鑑賞') }}
+            </a>
         </div>
 
         <div class="my-4">
@@ -23,7 +38,6 @@
                         <li class="mb-6 bg-white border rounded-lg p-4">
                             <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
                             <p class="text-gray-1000 mt-4">{!! nl2br($post->makeLink($post->body)) !!}</p>
-
                             <div class="flex justify-between mt-8">
                                 <span>
                                     @if ($post->is_liked())
