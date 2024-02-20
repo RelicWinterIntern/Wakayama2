@@ -13,6 +13,9 @@
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
             </a>
+            <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('全投稿') }}
+            </a>
             <a href="{{ route('freeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('フリー') }}
             </a>
@@ -26,7 +29,7 @@
                 {{ __('ゲーム') }}
             </a>
             <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
-                {{ __('動画鑑賞') }}
+                {{ __('動画') }}
             </a>
         </div>
 
@@ -35,27 +38,26 @@
             <div class="grid grid-cols-1 gap-4">
                 @foreach ($posts as $post)
                     <div class="bg-white shadow p-6 rounded-lg">
-                        <h4 class="text-lg font-bold">{{ $post->title }}</h4>
-                        <p class="text-gray-800">{{ $post->body }}</p>
+                    <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
+                        <p class="text-gray-1000 mt-4">{!! nl2br($post->makeLink($post->body)) !!}</p>
                         <div class="flex justify-between mt-8">
-                                <span>
-                                    @if ($post->is_liked())
-                                        <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
-                                            いいね済
-                                            {{ $post->likes->count() }}
-                                        </a>
-                                    @else
-                                        <a href="{{ route('post.like', $post->id) }}" class="btn btn-secondary btn-sm">
-                                            いいね
-                                            <span class="badge">{{ $post->likes->count() }}</span>
-                                        </a>
-                                    @endif
-                                </span>
-                                <p class="text-gray-600">
-                                    {{ $post->user->name }} &emsp; {{ $post->updated_at }}
-                                </p>
-                            </div>
-                        <p class="text-gray-800">{{ $post->updated_at }}</p>
+                            <span>
+                                @if ($post->is_liked())
+                                    <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
+                                        いいね済
+                                        {{ $post->likes->count() }}
+                                    </a>
+                                @else
+                                    <a href="{{ route('post.like', $post->id) }}" class="btn btn-secondary btn-sm">
+                                        いいね
+                                        <span class="badge">{{ $post->likes->count() }}</span>
+                                    </a>
+                                @endif
+                            </span>
+                            <p class="text-gray-600">
+                                {{ $post->user->name }} &emsp; {{ $post->updated_at }}
+                            </p>
+                        </div>
                     </div>
                 @endforeach
             </div>

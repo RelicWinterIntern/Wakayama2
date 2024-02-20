@@ -13,6 +13,9 @@
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
             </a>
+            <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+                {{ __('全投稿') }}
+            </a>
             <a href="{{ route('freeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('フリー') }}
             </a>
@@ -26,7 +29,7 @@
                 {{ __('ゲーム') }}
             </a>
             <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
-                {{ __('動画鑑賞') }}
+                {{ __('動画') }}
             </a>
         </div>
 
@@ -34,8 +37,8 @@
             <div class="grid grid-cols-1 gap-4">
                 @foreach ($posts as $post)
                     <div class="bg-white shadow p-6 rounded-lg">
-                        <h4 class="text-lg font-bold">{{ $post->title }}</h4>
-                        <p class="text-gray-800">{{ $post->body }}</p>
+                        <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
+                        <p class="text-gray-1000 mt-4">{!! nl2br($post->makeLink($post->body)) !!}</p>
                         <p class="text-gray-800">{{ $post->updated_at }}</p>
 
                         <div class="mt-4 flex">

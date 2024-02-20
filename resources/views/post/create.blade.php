@@ -25,7 +25,7 @@
                             <option value="スポーツ">スポーツ</option>
                             <option value="アニメ">アニメ</option>
                             <option value="ゲーム">ゲーム</option>
-                            <option value="動画鑑賞">動画鑑賞</option>
+                            <option value="動画">動画</option>
                         </select>
                     </div>
                     <div class="flex justify-end">
