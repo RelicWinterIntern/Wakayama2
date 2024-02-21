@@ -49,6 +49,9 @@
                             @endif
                             <div class="flex justify-between mt-8">
                                 <span>
+                                    <div class="btn btn-primary btn-sm">
+                                        返信
+                                    </div>
                                     @if ($post->is_liked())
                                         <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
                                             いいね済
