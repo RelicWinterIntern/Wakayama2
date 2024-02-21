@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,18 @@ class PostController extends Controller
         $posts = Post::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get();
         return view('my-posts', compact('posts'));
     }
-    
+
+    public function likeSort()
+    {   
+        //左結合，同じ数のいいねのものは新しいものを上に
+        $posts = Post::select('posts.*')
+            ->leftJoin('likes', 'posts.id', '=', 'likes.post_id')
+            ->groupBy('posts.id')
+            ->orderByRaw('COUNT(likes.id) DESC, posts.id DESC')
+            ->get();
+        return view('topic-posts', compact('posts'));
+    }
+
     public function freePosts()
     {
         $posts = Post::where('topic_tag', 'フリー')->orderBy('updated_at', 'desc')->get();

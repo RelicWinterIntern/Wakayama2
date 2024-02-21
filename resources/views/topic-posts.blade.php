@@ -11,6 +11,8 @@
                 {{ __('自由な投稿一覧') }}
             @elseif (request()->is('movieposts'))
                 {{ __('動画に関する投稿一覧') }}
+            @elseif (request()->is('likeSort'))
+                {{ __('動画に関する投稿一覧') }}
             @endif
         </h2>
     </x-slot>
@@ -40,6 +42,9 @@
             </a>
             <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('movieposts') ? 'btn-dark' : 'btn-secondary' }} text-decoration-none">
                 {{ __('動画') }}
+            </a>
+            <a href="{{ route('likeSort') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('likeSort') ? 'btn-dark' : 'btn-secondary' }} text-decoration-none">
+                {{ __('人気のある投稿順') }}
             </a>
         </div>
 
