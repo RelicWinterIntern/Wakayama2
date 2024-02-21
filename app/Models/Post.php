@@ -19,6 +19,11 @@ class Post extends Model
     {
         return $this->hasMany(Like::class, 'post_id');
     }
+    // Postモデルは複数のRepliesモデルを持つ関係を定義
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 
     // ポストにいいねがされているかを判定するメソッド
     public function is_liked()

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
+            $table->BigInteger('user_id')->unsigned();
+            $table->BigInteger('post_id')->unsigned();
+            $table->BigInteger('parent_id')->unsigned()->nullable();
+            $table->text('reply_content');
+            $table->string('img_path')->nullable();
             $table->timestamps();
         });
     }
