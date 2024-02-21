@@ -31,6 +31,9 @@
             <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('動画') }}
             </a>
+            <a href="{{ route('likeSort') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('likeSort') ? 'btn-dark' : 'btn-secondary' }} text-decoration-none">
+                {{ __('人気のある投稿順') }}
+            </a>
         </div>
 
         @if (!empty($posts))
