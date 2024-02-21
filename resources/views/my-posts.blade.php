@@ -40,6 +40,9 @@
                         <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
                         <p class="text-gray-1000 mt-4">{!! nl2br($post->makeLink($post->body)) !!}</p>
                         <p class="text-gray-800">{{ $post->updated_at }}</p>
+                        @if(isset($post->img_path))
+                            <img src="{{ asset($post->img_path) }}" alt="投稿画像">
+                        @endif
 
                         <div class="mt-4 flex">
                             <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-primary mr-2"

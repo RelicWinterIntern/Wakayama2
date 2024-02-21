@@ -55,6 +55,9 @@
                     <div class="bg-white shadow p-6 rounded-lg">
                     <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
                         <p class="text-gray-1000 mt-4">{!! nl2br($post->makeLink($post->body)) !!}</p>
+                        @if(isset($post->img_path))
+                            <img src="{{ asset($post->img_path) }}" alt="投稿画像">
+                        @endif
                         <div class="flex justify-between mt-8">
                             <span>
                                 @if ($post->is_liked())
