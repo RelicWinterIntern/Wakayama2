@@ -43,8 +43,8 @@ class PostController extends Controller
             $file_name = $request->file('image')->getClientOriginalName();
             // storage > public > img 配下に画像が一時的に保存される
             $dir = 'img';
-            $img->storeAs('public/' . $dir, $file_name);
-            $imgPath = 'storage/' . $dir . '/' . $file_name;
+            $img->storeAs('/' . $dir, $file_name);
+            $imgPath = '/' . $dir . '/' . $file_name;
             // store処理が実行できたらDBに保存処理を実行
             if ($imgPath) {
                 // DBにPathを登録する処理
