@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/animeposts', [PostController::class, 'animePosts'])->name('animeposts');
     Route::get('/gameposts', [PostController::class, 'gamePosts'])->name('gameposts');
     Route::get('/movieposts', [PostController::class, 'moviePosts'])->name('movieposts');
+
+    Route::get('/likeSort', [PostController::class, 'likeSort'])->name('likeSort');
 });
 
 require __DIR__.'/auth.php';
