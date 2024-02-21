@@ -7,14 +7,14 @@
 
     <div class="max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
         <div class="my-4">
-            <a href="{{ route('post.create') }}" class="inline-block py-2 px-4 btn btn-primary text-decoration-none">
-                {{ __('投稿する') }}
+            <a href="{{ route('post.create') }}" class="btn btn-primary" role="button">
+                {{ __('新しい投稿') }}
             </a>
 
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
             </a>
-            <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+            <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4 btn btn-dark text-decoration-none">
                 {{ __('全投稿') }}
             </a>
             <a href="{{ route('freeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
@@ -32,15 +32,21 @@
             <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('動画') }}
             </a>
+            <a href="{{ route('likeSort') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('likeSort') ? 'btn-dark' : 'btn-secondary' }} text-decoration-none">
+                {{ __('人気のある投稿順') }}
+            </a>
         </div>
 
         <div class="my-4">
             @if (!empty($posts))
                 <ul>
-                @foreach ($posts as $post)
+                    @foreach ($posts as $post)
                         <li class="mb-6 bg-white border rounded-lg p-4">
                             <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
                             <p class="text-gray-1000 mt-4">{!! nl2br($post->makeLink($post->body)) !!}</p>
+                            @if(isset($post->img_path))
+                                <img src="{{ asset($post->img_path) }}" alt="投稿画像">
+                            @endif
                             <div class="flex justify-between mt-8">
                                 <span>
                                     @if ($post->is_liked())

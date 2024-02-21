@@ -8,7 +8,7 @@
     <div class="max-w-7xl mx-auto mt-10 sm:px-6 lg:px-8">
         <div class="my-4">
             <div class="bg-white shadow p-6 rounded-lg">
-                <form action="{{ route('post.store') }}" method="post">
+                <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
                         <label for="title" class="block text-gray-700 text-sm font-bold mb-2">タイトル</label>
@@ -28,6 +28,11 @@
                             <option value="動画">動画</option>
                         </select>
                     </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">画像のアップロード</label>
+                        <input type="file" name="image">
+                    </div>
+                    
                     <div class="flex justify-end">
                         <button type="submit" class="py-2 px-4 btn btn-primary">投稿する</button>
                         <a href="{{ route('post.index') }}" class="py-2 px-4 ml-4 btn btn-secondary">キャンセル</a>

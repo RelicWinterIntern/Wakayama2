@@ -1,7 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('スポーツに関する投稿一覧') }}
+            @if (request()->is('sportsposts'))
+                {{ __('スポーツに関する投稿一覧') }}
+            @elseif (request()->is('animeposts'))
+                {{ __('アニメに関する投稿一覧') }}
+            @elseif (request()->is('gameposts'))
+                {{ __('ゲームに関する投稿一覧') }}
+            @elseif (request()->is('freeposts'))
+                {{ __('自由な投稿一覧') }}
+            @elseif (request()->is('movieposts'))
+                {{ __('動画に関する投稿一覧') }}
+            @elseif (request()->is('likeSort'))
+                {{ __('動画に関する投稿一覧') }}
+            @endif
         </h2>
     </x-slot>
 
@@ -13,23 +25,26 @@
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
             </a>
-            <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+            <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4  btn {{ request()->is('post.index') ? 'btn-dark' : 'btn-secondary'}} text-decoration-none ">
                 {{ __('全投稿') }}
             </a>
-            <a href="{{ route('freeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+            <a href="{{ route('freeposts') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('freeposts') ? 'btn-dark' : 'btn-secondary'}} text-decoration-none ">
                 {{ __('フリー') }}
             </a>
-            <a href="{{ route('sportsposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
-                {{ __('スポーツ') }}
+            <a href="{{ route('sportsposts') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('sportsposts') ? 'btn-dark' : 'btn-secondary'}} text-decoration-none ">
+             {{ __('スポーツ') }}
             </a>
-            <a href="{{ route('animeposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+            <a href="{{ route('animeposts') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('animeposts') ? 'btn-dark' : 'btn-secondary'}} text-decoration-none ">
                 {{ __('アニメ') }}
             </a>
-            <a href="{{ route('gameposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+            <a href="{{ route('gameposts') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('gameposts') ? 'btn-dark' : 'btn-secondary'}} text-decoration-none  ">
                 {{ __('ゲーム') }}
             </a>
-            <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+            <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('movieposts') ? 'btn-dark' : 'btn-secondary' }} text-decoration-none">
                 {{ __('動画') }}
+            </a>
+            <a href="{{ route('likeSort') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('likeSort') ? 'btn-dark' : 'btn-secondary' }} text-decoration-none">
+                {{ __('人気のある投稿順') }}
             </a>
         </div>
 
@@ -40,6 +55,9 @@
                     <div class="bg-white shadow p-6 rounded-lg">
                     <h2 class="text-lg font-bold mb-2 border-bottom">{{ $post->title }}</h2>
                         <p class="text-gray-1000 mt-4">{!! nl2br($post->makeLink($post->body)) !!}</p>
+                        @if(isset($post->img_path))
+                            <img src="{{ asset($post->img_path) }}" alt="投稿画像">
+                        @endif
                         <div class="flex justify-between mt-8">
                             <span>
                                 @if ($post->is_liked())
@@ -68,3 +86,4 @@
         @endif
     </div>
 </x-app-layout>
+
