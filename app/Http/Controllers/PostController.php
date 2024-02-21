@@ -47,30 +47,30 @@ class PostController extends Controller
     public function freePosts()
     {
         $posts = Post::where('topic_tag', 'フリー')->orderBy('updated_at', 'desc')->get();
-        return view('free-posts', compact('posts'));
+        return view('topic-posts', compact('posts'));
     }
 
     public function sportsPosts()
     {
         $posts = Post::where('topic_tag', 'スポーツ')->orderBy('updated_at', 'desc')->get();
-        return view('sports-posts', compact('posts'));
+        return view('topic-posts', compact('posts'));
     }
     public function animePosts()
     {
         $posts = Post::where('topic_tag', 'アニメ')->orderBy('updated_at', 'desc')->get();
-        return view('anime-posts', compact('posts'));
+        return view('topic-posts', compact('posts'));
     }
 
     public function gamePosts()
     {
         $posts = Post::where('topic_tag', 'ゲーム')->orderBy('updated_at', 'desc')->get();
-        return view('game-posts', compact('posts'));
+        return view('topic-posts', compact('posts'));
     }
 
     public function moviePosts()
     {
         $posts = Post::where('topic_tag', '動画')->orderBy('updated_at', 'desc')->get();
-        return view('movie-posts', compact('posts'));
+        return view('topic-posts', compact('posts'));
     }
 
     public function edit($id)

@@ -10,7 +10,7 @@
             <a href="{{ route('post.create') }}" class="btn btn-primary" role="button">
                 {{ __('新しい投稿') }}
             </a>
-            <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
+            <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-dark text-decoration-none">
                 {{ __('自分の投稿を確認する') }}
             </a>
             <a href="{{ route('post.index') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
