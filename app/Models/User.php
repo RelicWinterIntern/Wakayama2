@@ -53,4 +53,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class, 'user_id');
     }
+    public function commonthings()
+    {
+        return $this->hasMany(CommonThing::class, 'user_id');
+    }
 }
