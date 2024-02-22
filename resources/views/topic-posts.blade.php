@@ -71,17 +71,6 @@
                                       <span style="font-size: larger;">{{ $post->likes->count() }}</span>
                                   </a>
                               @endif
-
-                              @if ($post->is_sad_in())
-                                  <a href="{{ route('post.unsad', $post->id) }}" class="btn btn-success btn-sm">
-                                      残念 (T ^ T) 済
-                                      <span style="font-size: larger;">{{ $post->sads->count() }}</span>
-                                  </a>
-                              @else
-                                  <a href="{{ route('post.sad', $post->id) }}" class="btn btn-secondary btn-sm">
-                                      残念 (；ω；)
-                                      <span style="font-size: larger;">{{ $post->sads->count() }}</span>
-                              @endif
                               @if ($post->is_commonersed())
                                   <a href="{{ route('post.uncommon', $post->id) }}" class="btn btn-success btn-sm">
                                       あるある!!(v^□^v) 済
@@ -92,6 +81,17 @@
                                       あるある!!(o^∇^o)
                                       <span style="font-size: larger;">{{ $post->common_things->count() }}</span>
                                   </a>
+                              @endif
+                              @if ($post->is_sad_in())
+                                  <a href="{{ route('post.unsad', $post->id) }}" class="btn btn-warning btn-sm">
+                                      残念 (T ^ T) 済
+                                      <span style="font-size: larger;">{{ $post->sads->count() }}</span>
+                                  </a>
+                              @else
+                                  <a href="{{ route('post.sad', $post->id) }}" class="btn btn-secondary btn-sm">
+                                      残念 (；ω；)
+                                      <span style="font-size: larger;">{{ $post->sads->count() }}</span>
+                                </a>
                               @endif
                             </span>
                             <p class="text-gray-600">
