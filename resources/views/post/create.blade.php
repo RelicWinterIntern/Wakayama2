@@ -32,7 +32,6 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2">画像のアップロード</label>
                         <input type="file" name="image">
                     </div>
-                    
                     <div class="flex justify-end">
                         <button type="submit" class="py-2 px-4 btn btn-primary">投稿する</button>
                         <a href="{{ route('post.index') }}" class="py-2 px-4 ml-4 btn btn-secondary">キャンセル</a>

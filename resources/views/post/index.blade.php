@@ -49,9 +49,6 @@
                             @endif
                             <div class="flex justify-between mt-8">
                                 <span>
-                                    <div class="btn btn-primary btn-sm">
-                                        返信
-                                    </div>
                                     @if ($post->is_liked())
                                         <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
                                             いいね済
@@ -68,6 +65,25 @@
                                     {{ $post->user->name }} &emsp; {{ $post->updated_at }}
                                 </p>
                             </div>
+                            <div class="btn btn-primary btn-sm show-replies-btn" data-post-id="{{ $post->id }}">スレッドを表示 ( {{ $post->replies->count() }} 件)</div>
+                            <div class="replies-section" id="replies-section-{{ $post->id }}" style="display: none;">
+                                <h3>返信</h3>
+                                <ul class="replies-list">
+                                    @foreach($post->replies as $reply)
+                                        <li>{{ $reply->reply_content }}</li>
+                                    @endforeach
+                                </ul>
+                                <form method="post" class="reply-form" action="{{ route('post.store') }}" enctype="multipart/form-data">
+                                    <textarea name="reply_content" id="reply_content" rows="3" class="w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500" placeholder="この投稿にどう感じた？" required></textarea>
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-bold mb-2">画像のアップロード</label>
+                                        <input type="file" name="image">
+                                    </div>
+                                    <div class="flex justify-end">
+                                        <button type="submit" class="py-2 px-4 btn btn-primary reply-btn" data-post-id="{{ $post->id }}">投稿する</button>
+                                    </div>
+                                </form>
+                            </div>
                         </li>
                     @endforeach
                 </ul>
@@ -79,3 +95,25 @@
         </div>
     </div>
 </x-app-layout>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.show-replies-btn').click(function () {
+            var postId = $(this).data('post-id');
+            var repliesSection = $('#replies-section-' + postId);
+            $(this).hide();
+            // 返信一覧とフォームを表示・非表示切り替え
+            repliesSection.slideToggle();
+        });
+
+        $('.reply-btn').click(function () {
+            var postId = $(this).data('post-id');
+            var repliesSection = $('#replies-section-' + postId);
+            console.log("t")
+            // 返信一覧とフォームを表示・非表示切り替え
+            repliesSection.hide();
+            $('.show-replies-btn').show();
+        });
+    });
+</script>

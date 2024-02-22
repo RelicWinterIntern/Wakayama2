@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('replies')->orderBy('updated_at', 'desc')->get();
+        $posts = Post::orderBy('updated_at', 'desc')->get();
         return view('post.index', compact('posts'));
     }
 
@@ -56,6 +56,12 @@ class PostController extends Controller
         $post->save();
 
         return redirect()->route('post.index')->with('success', '投稿が作成されました');
+    }
+
+    public function show($postId)
+    {
+        $post = Post::with('replies')->find($postId);
+        return view('post.show', compact('post'));
     }
 
     public function myPosts()

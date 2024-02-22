@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Reply;
 
 class ReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Post $post)
     {
-        //
+        $replies = $post->replies;
+        return view('post.reply', compact('post', 'replies'));
     }
 
     /**
@@ -25,9 +28,14 @@ class ReplyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $postId)
     {
-        //
+        //dd($request);
+        // $post = Post::find($postId);
+        // $reply = new Reply(['reply_content' => $request->input('reply_content')]);
+        // // dd($post, $reply);
+        // $post->replies()->save($reply);
+        // return redirect()->route('post.show', $postId);
     }
 
     /**
