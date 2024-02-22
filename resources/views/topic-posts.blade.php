@@ -60,17 +60,30 @@
                         @endif
                         <div class="flex justify-between mt-8">
                             <span>
-                                @if ($post->is_liked())
-                                    <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
-                                        いいね済
-                                        {{ $post->likes->count() }}
-                                    </a>
-                                @else
-                                    <a href="{{ route('post.like', $post->id) }}" class="btn btn-secondary btn-sm">
-                                        いいね
-                                        <span class="badge">{{ $post->likes->count() }}</span>
-                                    </a>
-                                @endif
+                            <span>
+                                    @if ($post->is_liked())
+                                        <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
+                                            いいね (*>ω<)b 済
+                                            <span style="font-size: larger;">{{ $post->likes->count() }}</span>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('post.like', $post->id) }}" class="btn btn-secondary btn-sm">
+                                            いいね (｀･ω･´)b
+                                            <span style="font-size: larger;">{{ $post->likes->count() }}</span>
+                                        </a>
+                                    @endif
+                                    @if ($post->is_sad_in())
+                                        <a href="{{ route('post.unsad', $post->id) }}" class="btn btn-success btn-sm">
+                                            残念 (T ^ T) 済
+                                            <span style="font-size: larger;">{{ $post->sads->count() }}</span>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('post.sad', $post->id) }}" class="btn btn-secondary btn-sm">
+                                            残念 (；ω；)
+                                            <span style="font-size: larger;">{{ $post->sads->count() }}</span>
+                                        </a>
+                                    @endif
+                                </span>
                             </span>
                             <p class="text-gray-600">
                                 {{ $post->user->name }} &emsp; {{ $post->updated_at }}

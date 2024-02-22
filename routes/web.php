@@ -1,9 +1,9 @@
 <?php
-
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/post/{id}/like', [LikeController::class, 'like'])->name('post.like');
     Route::get('/post/{id}/unlike', [LikeController::class, 'unlike'])->name('post.unlike');
+    Route::get('/post/{id}/sad', [SadController::class, 'sad'])->name('post.sad');
+    Route::get('/post/{id}/unsad', [SadController::class, 'unsad'])->name('post.unsad');
 
     Route::get('/myposts', [PostController::class, 'myPosts'])->name('myposts');
 

@@ -14,13 +14,11 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    // Postモデルは複数のLikeモデルを持つ関係を定義
     public function likes()
     {
         return $this->hasMany(Like::class, 'post_id');
     }
 
-    // ポストにいいねがされているかを判定するメソッド
     public function is_liked()
     {
         // 現在のユーザのIDを取得
@@ -38,7 +36,27 @@ class Post extends Model
             return false;
         }
     }
+    public function sads()
+    {
+        return $this->hasMany(Sad::class, 'post_id');
+    }
 
+    public function is_sad_in()
+    {
+        //現在のユーザのIDを取得
+        $id = Auth::id();
+        //ユーザのIDを格納するための配列を初期化
+        $sadPerson = array();
+        foreach($this->sads as $sad) {
+            array_push($sadPerson, $sad->user_id);
+        }
+        // 現在のユーザのIDがユーザーの配列に含まれているかを判定
+        if (in_array($id, $sadPerson)) {
+            return true;
+        } else {  // いいねがされていない場合はfalseを返す
+            return false;
+        }
+    }
     // URLをアンカータグでリンク化する
     public function makeLink($comment) {
         //URL抽出の正規表現
