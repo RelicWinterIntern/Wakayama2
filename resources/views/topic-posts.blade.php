@@ -19,7 +19,7 @@
 
     <div class="max-w-7xl mx-auto mt-10 sm:px-6 lg:px-8">
         <div class="my-4">
-            <a href="{{ route('post.create') }}" class="btn btn-primary" role="button">
+            <a href="{{ route('post.create') }}" class="inline-block py-2 px-4 btn btn-primary text-decoration-none">
                 {{ __('新しい投稿') }}
             </a>
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
@@ -44,7 +44,7 @@
                 {{ __('動画') }}
             </a>
             <a href="{{ route('likeSort') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('likeSort') ? 'btn-dark' : 'btn-secondary' }} text-decoration-none">
-                {{ __('人気のある投稿順') }}
+                {{ __('いいね数の多い順') }}
             </a>
         </div>
 
@@ -62,13 +62,24 @@
                             <span>
                                 @if ($post->is_liked())
                                     <a href="{{ route('post.unlike', $post->id) }}" class="btn btn-success btn-sm">
-                                        いいね済
-                                        {{ $post->likes->count() }}
+                                        いいね (*>ω<)b 済
+                                        <span style="font-size: larger;">{{ $post->likes->count() }}</span>
                                     </a>
                                 @else
                                     <a href="{{ route('post.like', $post->id) }}" class="btn btn-secondary btn-sm">
-                                        いいね
-                                        <span class="badge">{{ $post->likes->count() }}</span>
+                                        いいね (｀･ω･´)b
+                                        <span style="font-size: larger;">{{ $post->likes->count() }}</span>
+                                    </a>
+                                @endif
+                                @if ($post->is_commonersed())
+                                    <a href="{{ route('post.uncommon', $post->id) }}" class="btn btn-success btn-sm">
+                                        あるある!!(v^□^v)
+                                        <span style="font-size: larger;">{{ $post->common_things->count() }}</span>
+                                    </a>
+                                @else
+                                    <a href="{{ route('post.common', $post->id) }}" class="btn btn-secondary btn-sm">
+                                        あるある!!(o^∇^o)
+                                        <span style="font-size: larger;">{{ $post->common_things->count() }}</span>
                                     </a>
                                 @endif
                             </span>

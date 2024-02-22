@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\CommonThingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/post/{id}/like', [LikeController::class, 'like'])->name('post.like');
     Route::get('/post/{id}/unlike', [LikeController::class, 'unlike'])->name('post.unlike');
+    Route::get('/post/{id}/common', [CommonThingController::class, 'common'])->name('post.common');
+    Route::get('/post/{id}/uncommon', [CommonThingController::class, 'uncommon'])->name('post.uncommon');
 
     Route::get('/myposts', [PostController::class, 'myPosts'])->name('myposts');
 
