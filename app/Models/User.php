@@ -53,4 +53,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class, 'user_id');
     }
+    // Userモデルは複数のSadモデルを持つ関係を定義
+    public function sads()
+    {
+        return $this->hasMany(Sad::class, 'user_id');
+    }
+    public function commonthings()
+    {
+        return $this->hasMany(CommonThing::class, 'user_id');
+    }
 }
