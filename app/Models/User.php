@@ -58,4 +58,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Sad::class, 'user_id');
     }
+    public function commonthings()
+    {
+        return $this->hasMany(CommonThing::class, 'user_id');
+    }
 }

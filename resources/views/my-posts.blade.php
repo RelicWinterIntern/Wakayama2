@@ -7,7 +7,7 @@
 
     <div class="max-w-7xl mx-auto mt-10 sm:px-6 lg:px-8">
         <div class="my-4">
-            <a href="{{ route('post.create') }}" class="btn btn-primary" role="button">
+            <a href="{{ route('post.create') }}" class="inline-block py-2 px-4 btn btn-primary text-decoration-none">
                 {{ __('新しい投稿') }}
             </a>
             <a href="{{ route('myposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-dark text-decoration-none">
@@ -30,6 +30,9 @@
             </a>
             <a href="{{ route('movieposts') }}" class="inline-block ml-4 py-2 px-4 btn btn-secondary text-decoration-none">
                 {{ __('動画') }}
+            </a>
+            <a href="{{ route('likeSort') }}" class="inline-block ml-4 py-2 px-4 btn {{ request()->is('likeSort') ? 'btn-dark' : 'btn-secondary' }} text-decoration-none">
+                {{ __('いいね数の多い順') }}
             </a>
         </div>
 

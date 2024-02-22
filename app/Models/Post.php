@@ -18,6 +18,11 @@ class Post extends Model
     {
         return $this->hasMany(Like::class, 'post_id');
     }
+    // Postモデルは複数のcommonthingモデルを持つ関係を定義
+    public function common_things()
+    {
+        return $this->hasMany(CommonThing::class, 'post_id');
+    }
 
     public function is_liked()
     {
@@ -40,6 +45,29 @@ class Post extends Model
     {
         return $this->hasMany(Sad::class, 'post_id');
     }
+    public function is_commonersed()
+    {
+        // 現在のユーザのIDを取得
+        $id = Auth::id();
+        $commoners = array();
+        // ポストに対するあるあるを取得し、ユーザIDを配列に追加
+        foreach($this->common_things as $common_thing) {
+            array_push($commoners, $common_thing->user_id);
+        }
+        // 現在のユーザのIDがあるあるをしたユーザーの配列に含まれているかを判定
+        if (in_array($id, $commoners)) {  // あるあるがされている場合はtrueを返す
+            return true;
+        } else {  // あるあるがされていない場合はfalseを返す
+            return false;
+        }
+    }
+    public function is_common()
+    {
+        $id = Auth::id();
+        $commonThings = $this->common_things()->where('user_id', $id)->exists();
+        return $commonThings;
+    }
+
 
     public function is_sad_in()
     {
