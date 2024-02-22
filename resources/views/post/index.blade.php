@@ -62,7 +62,7 @@
                                     @endif
                                     @if ($post->is_commonersed())
                                         <a href="{{ route('post.uncommon', $post->id) }}" class="btn btn-success btn-sm">
-                                            あるある!!(v^□^v)
+                                            あるある!!(v^□^v)　済
                                             <span style="font-size: larger;">{{ $post->common_things->count() }}</span>
                                         </a>
                                     @else
